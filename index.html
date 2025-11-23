@@ -137,6 +137,10 @@
             animation-delay: 0.3s;
         }
 
+        section:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
         h2 {
             font-size: 1.5rem;
             font-weight: 600;
@@ -254,6 +258,16 @@
             color: var(--accent);
         }
 
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skills-grid .card {
+            margin-bottom: 0;
+        }
+
         .project-link {
             display: inline-flex;
             align-items: center;
@@ -309,6 +323,10 @@
             .card-header {
                 flex-direction: column;
                 align-items: start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -368,7 +386,7 @@
                 <div class="card-content">
                     <div class="card-header">
                         <div class="card-title">Software Engineer - Founding Team</div>
-                        <div class="card-date">Dec, 2024 - Present</div>
+                        <div class="card-date">Dec, 2024 - Nov, 2025</div>
                     </div>
                     <div class="card-subtitle">Erino</div>
                     <p class="card-description">
@@ -382,6 +400,92 @@
                         <span class="tag">PostgreSQL</span>
                         <span class="tag">MongoDB</span>
                         <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Programming Languages</div>
+                        <div class="tags">
+                            <span class="tag">Rust</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Web Development</div>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">React.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Express.js</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Redux Toolkit</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Database Management</div>
+                        <div class="tags">
+                            <span class="tag">MySQL</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Cloud Platforms</div>
+                        <div class="tags">
+                            <span class="tag">AWS Lambda</span>
+                            <span class="tag">AWS S3</span>
+                            <span class="tag">AWS SQS</span>
+                            <span class="tag">AWS IAM</span>
+                            <span class="tag">AWS EventBridge</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Version Control</div>
+                        <div class="tags">
+                            <span class="tag">Git</span>
+                            <span class="tag">GitHub</span>
+                            <span class="tag">BitBucket</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Operating Systems</div>
+                        <div class="tags">
+                            <span class="tag">Linux (Ubuntu)</span>
+                            <span class="tag">CLI</span>
+                            <span class="tag">Shell Scripting</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-subtitle">Blockchain / Web3</div>
+                        <div class="tags">
+                            <span class="tag">Solana</span>
+                            <span class="tag">Anchor Framework</span>
+                            <span class="tag">PDAs</span>
+                            <span class="tag">CPIs</span>
+                            <span class="tag">Solana Web3.js</span>
+                            <span class="tag">SPL Tokens</span>
+                            <span class="tag">Wallet Adapters</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -429,8 +533,9 @@
                         <span class="tag">Next.js</span>
                         <span class="tag">Express.js</span>
                         <span class="tag">WebSockets</span>
-                        <span class="tag">Solana</span>
-                        <span class="tag">web3.js</span>
+                        <span class="tag">Solana web3.js</span>
+                        <span class="tag">Rust</span>
+                        <span class="tag">Anchor</span>
                     </div>
                     <a href="https://tokenwars.fun/" class="project-link" target="_blank">
                         View Project →
