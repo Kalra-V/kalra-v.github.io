@@ -332,67 +332,64 @@
             color: var(--accent);
         }
 
-        /* Modern Skills Section */
+        /* Modern Skills Section - Grid Layout */
         .skills-container {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
 
         .skill-category {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .skill-category:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
 
         .skill-category-title {
-            font-size: 1.125rem;
+            font-size: 0.9375rem;
             font-weight: 600;
-            color: var(--text);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skill-category-title::before {
-            content: '';
-            width: 3px;
-            height: 18px;
-            background: var(--accent);
-            border-radius: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.8125rem;
         }
 
         .skills-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .skill-tag {
-            background: var(--card-bg);
+            background: var(--bg);
             border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
             font-weight: 500;
             transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: inline-block;
         }
 
         .skill-tag:hover {
             background: var(--accent);
             color: #ffffff;
             border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        [data-theme="dark"] .skill-tag:hover {
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
         }
 
         .skills-grid {
@@ -545,16 +542,22 @@
             }
 
             .skills-container {
-                gap: 24px;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .skill-category {
+                padding: 16px;
             }
 
             .skill-category-title {
-                font-size: 1rem;
+                font-size: 0.75rem;
+                margin-bottom: 12px;
             }
 
             .skill-tag {
-                font-size: 0.8125rem;
-                padding: 6px 12px;
+                font-size: 0.75rem;
+                padding: 5px 10px;
             }
         }
     </style>
@@ -667,7 +670,7 @@
                 <!-- Project 1: Tokenwars.fun -->
                 <div class="card">
                     <div class="card-content">
-                        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop" alt="Tokenwars.fun Screenshot" class="project-image">
+                        <img src="https://raw.githubusercontent.com/Kalra-V/kalra-v.github.io/main/media/tokenwars-project.png" alt="Tokenwars.fun Screenshot" class="project-image">
                         <div class="card-header">
                             <div class="card-title">Tokenwars.fun</div>
                             <div class="card-date">2024-2025</div>
@@ -694,7 +697,7 @@
                 <div class="card">
                     <div class="card-content">
                         <video class="project-video" controls muted loop playsinline>
-                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            <source src="https://raw.githubusercontent.com/Kalra-V/kalra-v.github.io/main/media/presale-video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="card-header">
