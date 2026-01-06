@@ -15,6 +15,7 @@
 
         :root {
             --bg: #ffffff;
+            --bg-rgb: 255, 255, 255;
             --text: #1a1a1a;
             --text-secondary: #666666;
             --accent: #2563eb;
@@ -25,6 +26,7 @@
 
         [data-theme="dark"] {
             --bg: #0a0a0a;
+            --bg-rgb: 10, 10, 10;
             --text: #ffffff;
             --text-secondary: #a3a3a3;
             --accent: #3b82f6;
@@ -41,16 +43,87 @@
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 900px;
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            background: var(--bg);
+            padding: 16px 0;
+            margin-bottom: 32px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 48px;
             animation: fadeInUp 0.8s ease;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            border: 3px solid var(--border);
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .profile-photo:hover {
+            border-color: var(--accent);
+            transform: scale(1.05);
         }
 
         h1 {
@@ -111,7 +184,7 @@
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
-            z-index: 100;
+            z-index: 1000;
         }
 
         .theme-toggle:hover {
@@ -120,9 +193,10 @@
         }
 
         section {
-            margin-bottom: 64px;
+            margin-bottom: 40px;
             animation: fadeInUp 0.8s ease;
             animation-fill-mode: both;
+            scroll-margin-top: 100px; /* Offset for sticky navigation */
         }
 
         section:nth-child(2) {
@@ -258,6 +332,69 @@
             color: var(--accent);
         }
 
+        /* Modern Skills Section */
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .skill-category {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .skill-category-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category-title::before {
+            content: '';
+            width: 3px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        [data-theme="dark"] .skill-tag:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -283,13 +420,67 @@
             gap: 12px;
         }
 
+        /* Project Images */
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .project-image:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        /* Project Videos */
+        .project-video {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            background: var(--card-bg);
+        }
+
+        .project-video:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+
+        .projects-grid .card {
+            margin-bottom: 0;
+        }
+
+        /* Highlight sections */
+        section#experience,
+        section#projects {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
         footer {
             text-align: center;
-            padding: 40px 0;
+            padding: 32px 0;
             color: var(--text-secondary);
             font-size: 0.875rem;
             border-top: 1px solid var(--border);
-            margin-top: 80px;
+            margin-top: 48px;
         }
 
         @keyframes fadeInUp {
@@ -307,6 +498,16 @@
         @media (max-width: 640px) {
             .container {
                 padding: 40px 20px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                justify-content: center;
             }
 
             .theme-toggle {
@@ -328,6 +529,33 @@
             .skills-grid {
                 grid-template-columns: 1fr;
             }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section#experience,
+            section#projects {
+                padding: 24px;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .skills-container {
+                gap: 24px;
+            }
+
+            .skill-category-title {
+                font-size: 1rem;
+            }
+
+            .skill-tag {
+                font-size: 0.8125rem;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
@@ -347,8 +575,25 @@
         </svg>
     </div>
 
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div style="font-weight: 600; color: var(--text);">Vansh Kalra</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#opensource">Open Source</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
+        <header id="home">
+            <!-- Profile Photo - Add your photo as profile-photo.jpg or update src -->
+            <img src="profile-photo.jpg" alt="Vansh Kalra" class="profile-photo" onerror="this.style.display='none'">
             <h1>Vansh Kalra</h1>
             <p class="tagline">The kind of talent you want on your engineering team</p>
 
@@ -380,7 +625,7 @@
             </div>
         </header>
 
-        <section>
+        <section id="experience">
             <h2>Work Experience</h2>
             <div class="card">
                 <div class="card-content">
@@ -394,6 +639,17 @@
                         core CRM modules and building scalable full-stack solutions using React, Express.js, PostgreSQL,
                         MongoDB, and AWS.
                     </p>
+                    <ul class="card-description" style="margin-top: 12px; padding-left: 20px;">
+                        <li>Spearheaded architecture and design of core modules within the CRM platform, addressing trade-offs to deliver the fastest
+                            and best feasible solution for users.</li>
+                        <li>Designed scalable RESTful APIs using Express.js with validation, error handling, and 25% reduced response times.</li>
+                        <li>Revamped the client-side application using React and TanStack Query to improve user experience and decrease load times
+                            by 30%.</li>
+                        <li>Implemented a serverless workflow with AWS Lambda, S3, and SQS for asynchronous data processing, resulting in a 15%
+                            decrease in server costs and a 12% increase in system efficiency.</li>
+                            <li>Leveraged AI-assisted development tools to speed up debugging, improve code quality, and accelerate delivery across
+                                backend and fronted workflows.</li>
+                    </ul>
                     <div class="tags">
                         <span class="tag">React</span>
                         <span class="tag">Express.js</span>
@@ -405,93 +661,68 @@
             </div>
         </section>
 
-        <section>
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1: Tokenwars.fun -->
                 <div class="card">
                     <div class="card-content">
-                        <div class="card-subtitle">Programming Languages</div>
+                        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop" alt="Tokenwars.fun Screenshot" class="project-image">
+                        <div class="card-header">
+                            <div class="card-title">Tokenwars.fun</div>
+                            <div class="card-date">2024-2025</div>
+                        </div>
+                        <p class="card-description">
+                            Developed TokenWars.fun, a full-stack crypto gaming platform, contributing to both frontend and
+                            backend architecture for real-time, token-based gameplay.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Express.js</span>
+                            <span class="tag">WebSockets</span>
+                            <span class="tag">Solana web3.js</span>
+                            <span class="tag">Rust</span>
+                            <span class="tag">Anchor</span>
+                        </div>
+                        <a href="https://tokenwars.fun/" class="project-link" target="_blank">
+                            View Project →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Solana Token Presale Platform -->
+                <div class="card">
+                    <div class="card-content">
+                        <video class="project-video" controls muted loop playsinline>
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="card-header">
+                            <div class="card-title">Solana Token Presale Platform</div>
+                            <div class="card-date">2025-2026</div>
+                        </div>
+                        <p class="card-description">
+                            A full-stack token presale platform built on Solana with real-time updates and admin dashboard.
+                        </p>
                         <div class="tags">
                             <span class="tag">Rust</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">TypeScript</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-subtitle">Web Development</div>
-                        <div class="tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">React.js</span>
-                            <span class="tag">Node.js</span>
+                            <span class="tag">Anchor</span>
+                            <span class="tag">Solana Smart Contract</span>
+                            <span class="tag">Solana web3.js</span>
+                            <span class="tag">Next.js 14</span>
                             <span class="tag">Express.js</span>
-                            <span class="tag">Next.js</span>
-                            <span class="tag">Redux Toolkit</span>
+                            <span class="tag">AWS DynamoDB</span>
+                            <span class="tag">Socket.io</span>
                         </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-subtitle">Database Management</div>
-                        <div class="tags">
-                            <span class="tag">MySQL</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-subtitle">Cloud Platforms</div>
-                        <div class="tags">
-                            <span class="tag">AWS Lambda</span>
-                            <span class="tag">AWS S3</span>
-                            <span class="tag">AWS SQS</span>
-                            <span class="tag">AWS IAM</span>
-                            <span class="tag">AWS EventBridge</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-subtitle">Version Control</div>
-                        <div class="tags">
-                            <span class="tag">Git</span>
-                            <span class="tag">GitHub</span>
-                            <span class="tag">BitBucket</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-subtitle">Operating Systems</div>
-                        <div class="tags">
-                            <span class="tag">Linux (Ubuntu)</span>
-                            <span class="tag">CLI</span>
-                            <span class="tag">Shell Scripting</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-subtitle">Blockchain / Web3</div>
-                        <div class="tags">
-                            <span class="tag">Solana</span>
-                            <span class="tag">Anchor Framework</span>
-                            <span class="tag">PDAs</span>
-                            <span class="tag">CPIs</span>
-                            <span class="tag">Solana Web3.js</span>
-                            <span class="tag">SPL Tokens</span>
-                            <span class="tag">Wallet Adapters</span>
-                        </div>
+                        <a href="https://github.com/Kalra-V/solana-presale-token" class="project-link" target="_blank">
+                            View Project →
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section>
+        <section id="opensource">
             <h2>Open Source Contributions</h2>
             <div class="card">
                 <div class="card-content">
@@ -517,35 +748,120 @@
             </div>
         </section>
 
-        <section>
-            <h2>Featured Project</h2>
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-header">
-                        <div class="card-title">Tokenwars.fun</div>
-                        <div class="card-date">2024-2025</div>
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-category-title">Programming Languages</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Rust</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
                     </div>
-                    <p class="card-description">
-                        Developed TokenWars.fun, a full-stack crypto gaming platform, contributing to both frontend and
-                        backend architecture for real-time, token-based gameplay.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">Next.js</span>
-                        <span class="tag">Express.js</span>
-                        <span class="tag">WebSockets</span>
-                        <span class="tag">Solana web3.js</span>
-                        <span class="tag">Rust</span>
-                        <span class="tag">Anchor</span>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Web Development</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Redux Toolkit</span>
                     </div>
-                    <a href="https://tokenwars.fun/" class="project-link" target="_blank">
-                        View Project →
-                    </a>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Database Management</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Cloud Platforms</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">AWS Lambda</span>
+                        <span class="skill-tag">AWS S3</span>
+                        <span class="skill-tag">AWS SQS</span>
+                        <span class="skill-tag">AWS IAM</span>
+                        <span class="skill-tag">AWS EventBridge</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Version Control & Tools</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">BitBucket</span>
+                        <span class="skill-tag">Linux (Ubuntu)</span>
+                        <span class="skill-tag">CLI</span>
+                        <span class="skill-tag">Shell Scripting</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Blockchain / Web3</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Solana</span>
+                        <span class="skill-tag">Anchor Framework</span>
+                        <span class="skill-tag">PDAs</span>
+                        <span class="skill-tag">CPIs</span>
+                        <span class="skill-tag">Solana Web3.js</span>
+                        <span class="skill-tag">SPL Tokens</span>
+                        <span class="skill-tag">Wallet Adapters</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <footer>
-            <p>© 2025 Vansh Kalra. Built with passion and precision.</p>
+        <!-- Education Section -->
+        <section id="education">
+            <h2>Education</h2>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-title">B. Tech in Computer Science</div>
+                        <div class="card-date">2021-2025</div>
+                    </div>
+                    <div class="card-subtitle">Guru Gobind Singh Indraprastha University (GGSIPU)</div>
+                    <p class="card-description">
+                        Pursuing a Bachelor's degree in Computer Science with a focus on software engineering, 
+                        algorithms, and modern web technologies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact">
+            <div style="margin-bottom: 24px;">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 16px; color: var(--text);">Get in Touch</h3>
+                <p style="margin-bottom: 20px; color: var(--text-secondary);">
+                    I'm always open to discussing new opportunities and interesting projects.
+                </p>
+                <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+                    <a href="mailto:vanshkalra645@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        vanshkalra645@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/kalraav/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/kalra-v" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.875rem;">© 2025 Vansh Kalra. Built with passion and precision.</p>
         </footer>
     </div>
 
@@ -562,12 +878,19 @@
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', savedTheme);
 
+        // Smooth scroll with offset for sticky navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
